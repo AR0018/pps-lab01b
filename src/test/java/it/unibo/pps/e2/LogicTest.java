@@ -1,5 +1,7 @@
 package it.unibo.pps.e2;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -35,19 +37,63 @@ public class LogicTest {
         assertTrue(this.logic.hasPawn(PAWN_X, PAWN_Y));
     }
 
-    @Test
-    public void testHitWithLegalMove() {
-        int xDestination = 1;
-        int yDestination = 0;
+
+    @ParameterizedTest
+    @CsvSource({
+            "1, 0",
+            "3, 0",
+            "4, 1",
+            "4, 3",
+            "3, 4",
+            "1, 4",
+            "0, 3",
+            "0, 1"
+    })
+    public void testHitWithLegalMove(final int xDestination, final int yDestination) {
         this.logic.hit(xDestination, yDestination);
         assertTrue(this.logic.hasKnight(xDestination, yDestination));
     }
 
-    @Test
-    public void testHitWithIllegalMove() {
-        int xDestination = 4;
-        int yDestination = 0;
+    @ParameterizedTest
+    @CsvSource({
+            "1, 1",
+            "2, 1",
+            "3, 1",
+            "1, 2",
+            "3, 2",
+            "1, 3",
+            "2, 3",
+            "3, 3",
+            "0, 0",
+            "2, 0",
+            "4, 0",
+            "0, 2",
+            "4, 2",
+            "0, 4",
+            "2, 4",
+            "4, 4"
+    })
+    public void testHitWithIllegalMove(final int xDestination, final int yDestination) {
         this.logic.hit(xDestination, yDestination);
         assertTrue(this.logic.hasKnight(KNIGHT_X, KNIGHT_Y));
+    }
+
+    @Test
+    public void testHitsPawn() {
+        assertTrue(this.logic.hit(PAWN_X, PAWN_Y));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "1, 0",
+            "3, 0",
+            "4, 1",
+            "4, 3",
+            "3, 4",
+            "1, 4",
+            "0, 3"
+    })
+    public void testDoesNotHitPawn(final int xDestination, final int yDestination) {
+        assertFalse(this.logic.hit(xDestination, yDestination));
     }
 }
