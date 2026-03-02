@@ -29,9 +29,9 @@ public class CoreBankAccountTest {
 
     @Test
     public void testCanWithdraw() {
-        int withdraw_amount = 200;
+        int withdrawAmount = 200;
         this.account.deposit(DEPOSIT_AMOUNT);
-        this.account.withdraw(withdraw_amount);
-        assertEquals(DEPOSIT_AMOUNT - withdraw_amount, this.account.getBalance());
+        this.account.withdraw(withdrawAmount);
+        assertEquals(DEPOSIT_AMOUNT - withdrawAmount, this.account.getBalance());
     }
 }

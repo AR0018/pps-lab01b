@@ -16,17 +16,17 @@ public class SilverBankAccountTest extends CoreBankAccountTest {
     @Override
     @Test
     public void testCanWithdraw() {
-        int withdraw_amount = 200;
+        int withdrawAmount = 200;
         this.account.deposit(DEPOSIT_AMOUNT);
-        this.account.withdraw(withdraw_amount);
-        assertEquals(DEPOSIT_AMOUNT - withdraw_amount - 1, this.account.getBalance());
+        this.account.withdraw(withdrawAmount);
+        assertEquals(DEPOSIT_AMOUNT - withdrawAmount - 1, this.account.getBalance());
     }
 
     @Test
     public void testCannotWithdrawMoreThanAvailable(){
-        int withdraw_amount = 1200;
+        int withdrawAmount = 1200;
         this.account.deposit(DEPOSIT_AMOUNT);
-        assertThrows(IllegalStateException.class, () -> this.account.withdraw(withdraw_amount));
+        assertThrows(IllegalStateException.class, () -> this.account.withdraw(withdrawAmount));
     }
 
 }

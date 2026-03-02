@@ -15,16 +15,16 @@ public class GoldBankAccountTest extends CoreBankAccountTest {
 
     @Test
     public void testOverdraftUpTo500() {
-        int withdraw_amount = DEPOSIT_AMOUNT + 500;
+        int withdrawAmount = DEPOSIT_AMOUNT + 500;
         this.account.deposit(DEPOSIT_AMOUNT);
-        this.account.withdraw(withdraw_amount);
-        assertEquals(DEPOSIT_AMOUNT - withdraw_amount, this.account.getBalance());
+        this.account.withdraw(withdrawAmount);
+        assertEquals(DEPOSIT_AMOUNT - withdrawAmount, this.account.getBalance());
     }
 
     @Test
     public void testOverdraftCannotBeHigherThan500() {
-        int withdraw_amount = DEPOSIT_AMOUNT + 501;
+        int withdrawAmount = DEPOSIT_AMOUNT + 501;
         this.account.deposit(DEPOSIT_AMOUNT);
-        assertThrows(IllegalStateException.class, () -> this.account.withdraw(withdraw_amount));
+        assertThrows(IllegalStateException.class, () -> this.account.withdraw(withdrawAmount));
     }
 }
