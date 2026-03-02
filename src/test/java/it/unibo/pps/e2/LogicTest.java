@@ -1,6 +1,7 @@
 package it.unibo.pps.e2;
 import org.junit.jupiter.api.*;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LogicTest {
@@ -32,5 +33,21 @@ public class LogicTest {
     @Test
     public void testPawnInitialPos() {
         assertTrue(this.logic.hasPawn(PAWN_X, PAWN_Y));
+    }
+
+    @Test
+    public void testHitWithLegalMove() {
+        int xDestination = 1;
+        int yDestination = 0;
+        this.logic.hit(xDestination, yDestination);
+        assertTrue(this.logic.hasKnight(xDestination, yDestination));
+    }
+
+    @Test
+    public void testHitWithIllegalMove() {
+        int xDestination = 4;
+        int yDestination = 0;
+        this.logic.hit(xDestination, yDestination);
+        assertTrue(this.logic.hasKnight(KNIGHT_X, KNIGHT_Y));
     }
 }
