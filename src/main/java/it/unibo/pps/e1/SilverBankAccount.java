@@ -2,7 +2,11 @@ package it.unibo.pps.e1;
 
 public class SilverBankAccount implements BankAccount {
 
-    private final CoreBankAccount base = new CoreBankAccount();
+    private final BankAccount base;
+
+    public SilverBankAccount(BankAccount baseAccount) {
+        this.base = baseAccount;
+    }
 
     @Override
     public int getBalance() {
