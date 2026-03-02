@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CoreBankAccountTest {
 
     public static final int DEPOSIT_AMOUNT = 1000;
-    protected BankAccount account;
+    protected BankAccount account; //TODO: Set this private with protected getter and setter methods
 
     @BeforeEach
     void init(){
