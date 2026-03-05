@@ -8,6 +8,7 @@ public interface Knight {
      * out of bounds), this method does nothing.
      * @param row the destination row
      * @param col the destination column
+     * @throws IndexOutOfBoundsException if the coordinates provided are outside the board.
      */
     void move(int row, int col);
 
