@@ -13,34 +13,29 @@ public class KnightTest {
     private static final int INITIAL_ROW = 2;
     private static final int INITIAL_COL = 2;
 
-    private Knight knight;
+    private ChessPiece knight;
 
     @BeforeEach
     void init() {
-        this.knight = new KnightImpl(BOARD_SIZE, INITIAL_ROW, INITIAL_COL);
+        this.knight = new KnightImpl(BOARD_SIZE, new Pair<>(INITIAL_ROW, INITIAL_COL));
     }
 
     @Test
     public void testInitialPositionIsInBounds() {
         assertThrows(IllegalArgumentException.class, () -> new KnightImpl(
-                BOARD_SIZE, ILLEGAL_COORDINATE, ILLEGAL_COORDINATE));
+                BOARD_SIZE, new Pair<>(ILLEGAL_COORDINATE, ILLEGAL_COORDINATE)));
     }
 
     @Test
     public void testInitialSizeGreaterThanZero() {
         int illegalSize = -1;
         assertThrows(IllegalArgumentException.class, () -> new KnightImpl(
-                illegalSize, 0, 0));
+                illegalSize, new Pair<>(0, 0)));
     }
 
     @Test
-    public void testInitialRow() {
-        assertEquals(INITIAL_ROW, this.knight.getRow());
-    }
-
-    @Test
-    public void testInitialCol() {
-        assertEquals(INITIAL_COL, this.knight.getCol());
+    public void testInitialPosition() {
+        assertEquals(new Pair<>(INITIAL_ROW, INITIAL_COL), this.knight.getPosition());
     }
 
     @ParameterizedTest
@@ -55,9 +50,8 @@ public class KnightTest {
             "0, 1"
     })
     public void testMovementWithLegalMove(final int xDestination, final int yDestination) {
-        this.knight.move(xDestination, yDestination);
-        assertEquals(xDestination, this.knight.getRow());
-        assertEquals(yDestination, this.knight.getCol());
+        this.knight.move(new Pair<>(xDestination, yDestination));
+        assertEquals(new Pair<>(xDestination, yDestination), this.knight.getPosition());
     }
 
     @ParameterizedTest
@@ -80,16 +74,16 @@ public class KnightTest {
             "4, 4"
     })
     public void testMovementWithIllegalMove(final int xDestination, final int yDestination) {
-        this.knight.move(xDestination, yDestination);
-        assertEquals(INITIAL_ROW, this.knight.getRow());
-        assertEquals(INITIAL_COL, this.knight.getCol());
+        this.knight.move(new Pair<>(xDestination, yDestination));
+        assertEquals(new Pair<>(INITIAL_ROW, INITIAL_COL), this.knight.getPosition());
     }
 
     @Test
     public void testMovementOutOfBounds() {
         int initialMoveRow = 0;
         int initialMoveCol = 1;
-        this.knight.move(initialMoveRow, initialMoveCol);
-        assertThrows(IndexOutOfBoundsException.class, () -> this.knight.move(ILLEGAL_COORDINATE, ILLEGAL_COORDINATE));
+        this.knight.move(new Pair<>(initialMoveRow, initialMoveCol));
+        assertThrows(IndexOutOfBoundsException.class,
+                () -> this.knight.move(new Pair<>(ILLEGAL_COORDINATE, ILLEGAL_COORDINATE)));
     }
 }

@@ -5,21 +5,20 @@ import java.util.*;
 public class LogicsImpl implements Logics {
 	
 	private final Pair<Integer,Integer> pawn;
-	private final Knight knight;
+	private final ChessPiece knight;
 	private final Random random = new Random();
 	private final int size;
 
     public LogicsImpl(int size){
     	this.size = size;
         this.pawn = this.randomEmptyPosition();
-		Pair<Integer, Integer> knightPos = this.randomEmptyPosition();
-        this.knight = new KnightImpl(size, knightPos.getX(), knightPos.getY());
+        this.knight = new KnightImpl(size, this.randomEmptyPosition());
     }
 
     public LogicsImpl(int size, Pair<Integer, Integer> pawn, Pair<Integer, Integer> knightPos) {
         this.size = size;
         this.pawn = pawn;
-        this.knight = new KnightImpl(size, knightPos.getX(), knightPos.getY());
+        this.knight = new KnightImpl(size, knightPos);
     }
     
 	private Pair<Integer,Integer> randomEmptyPosition(){
@@ -30,13 +29,13 @@ public class LogicsImpl implements Logics {
     
 	@Override
 	public boolean hit(int row, int col) {
-		this.knight.move(row, col);
-		return this.pawn.equals(new Pair<>(this.knight.getRow(), this.knight.getCol()));
+		this.knight.move(new Pair<>(row, col));
+		return this.pawn.equals(this.knight.getPosition());
 	}
 
 	@Override
 	public boolean hasKnight(int row, int col) {
-		return this.knight.getRow() == row && this.knight.getCol() == col;
+		return this.knight.getPosition().equals(new Pair<>(row, col));
 	}
 
 	@Override
