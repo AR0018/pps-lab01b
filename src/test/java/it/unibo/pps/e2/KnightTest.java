@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class KnightTest {
+    public static final int ILLEGAL_COORDINATE = -1;
     private static final int BOARD_SIZE = 5;
     private static final int INITIAL_ROW = 2;
     private static final int INITIAL_COL = 2;
@@ -21,9 +22,8 @@ public class KnightTest {
 
     @Test
     public void testInitialPositionIsInBounds() {
-        int illegalCoordinate = -1;
         assertThrows(IllegalArgumentException.class, () -> new KnightImpl(
-                BOARD_SIZE, illegalCoordinate, illegalCoordinate));
+                BOARD_SIZE, ILLEGAL_COORDINATE, ILLEGAL_COORDINATE));
     }
 
     @Test
@@ -83,5 +83,13 @@ public class KnightTest {
         this.knight.move(xDestination, yDestination);
         assertEquals(INITIAL_ROW, this.knight.getRow());
         assertEquals(INITIAL_COL, this.knight.getCol());
+    }
+
+    @Test
+    public void testMovementOutOfBounds() {
+        int initialMoveRow = 0;
+        int initialMoveCol = 1;
+        this.knight.move(initialMoveRow, initialMoveCol);
+        assertThrows(IndexOutOfBoundsException.class, () -> this.knight.move(ILLEGAL_COORDINATE, ILLEGAL_COORDINATE));
     }
 }
