@@ -12,13 +12,13 @@ public class LogicsImpl implements Logics {
     public LogicsImpl(int size){
     	this.size = size;
         this.pawn = this.randomEmptyPosition();
-        this.knight = new KnightImpl(size, this.randomEmptyPosition());
+        this.knight = new ChessPieceImpl(size, randomEmptyPosition(), new KnightBehaviour());
     }
 
     public LogicsImpl(int size, Pair<Integer, Integer> pawn, Pair<Integer, Integer> knightPos) {
         this.size = size;
         this.pawn = pawn;
-        this.knight = new KnightImpl(size, knightPos);
+        this.knight = new ChessPieceImpl(size, knightPos, new KnightBehaviour());
     }
     
 	private Pair<Integer,Integer> randomEmptyPosition(){
