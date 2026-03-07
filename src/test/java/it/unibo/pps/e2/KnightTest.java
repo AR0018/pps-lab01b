@@ -12,7 +12,7 @@ public class KnightTest extends ChessPieceTest {
     @Override
     @BeforeEach
     void init() {
-        setChessPiece(new KnightImpl(BOARD_SIZE, new Pair<>(INITIAL_ROW, INITIAL_COL)));
+        setChessPiece(new ChessPieceImpl(BOARD_SIZE, new Pair<>(INITIAL_ROW, INITIAL_COL), new KnightBehaviour()));
     }
 
     @ParameterizedTest
