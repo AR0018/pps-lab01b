@@ -21,12 +21,6 @@ public class LogicTest {
         this.logic = new LogicsImpl(SIZE, new Pair<>(PAWN_X, PAWN_Y), new Pair<>(KNIGHT_X, KNIGHT_Y));
     }
 
-    // TODO: Add your test logic here
-    // You can generate random inputs and assert the expected output
-    // For example:
-    // int result = Logic.someMethod(5, 10);
-    // assertEquals(expectedResult, result);
-
     @Test
     public void testKnightInitialPos() {
         assertTrue(this.logic.hasKnight(KNIGHT_X, KNIGHT_Y));
