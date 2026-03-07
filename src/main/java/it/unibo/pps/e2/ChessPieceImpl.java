@@ -5,7 +5,7 @@ public class ChessPieceImpl implements ChessPiece {
     private Pair<Integer, Integer> position;
     private final PieceBehaviour behaviour;
 
-    public ChessPieceImpl(int boardSize, Pair<Integer, Integer> initialPosition, PieceBehaviour behaviour) {
+    public ChessPieceImpl(final int boardSize, final Pair<Integer, Integer> initialPosition, final PieceBehaviour behaviour) {
         if(isOutOfBounds(boardSize, initialPosition)) {
             throw new IllegalArgumentException("Initial Knight position is out of bounds.");
         }

@@ -10,13 +10,13 @@ public class LogicsImpl implements Logics {
 	private final int size;
 	private final PieceBehaviour noMovementBehaviour = (boardSize, initial, destination) -> false;
 
-    public LogicsImpl(int size){
+    public LogicsImpl(final int size){
     	this.size = size;
         this.pawn = new ChessPieceImpl(size, randomEmptyPosition(), noMovementBehaviour);
         this.knight = new ChessPieceImpl(size, randomEmptyPosition(), new KnightBehaviour());
     }
 
-    public LogicsImpl(int size, Pair<Integer, Integer> pawnPosition, Pair<Integer, Integer> knightPosition) {
+    public LogicsImpl(final int size, final Pair<Integer, Integer> pawnPosition, final Pair<Integer, Integer> knightPosition) {
         this.size = size;
         this.pawn = new ChessPieceImpl(size, pawnPosition, noMovementBehaviour);
         this.knight = new ChessPieceImpl(size, knightPosition, new KnightBehaviour());
@@ -29,18 +29,18 @@ public class LogicsImpl implements Logics {
     }
     
 	@Override
-	public boolean hit(int row, int col) {
+	public boolean hit(final int row, final int col) {
 		this.knight.move(new Pair<>(row, col));
 		return this.pawn.getPosition().equals(this.knight.getPosition());
 	}
 
 	@Override
-	public boolean hasKnight(int row, int col) {
+	public boolean hasKnight(final int row, final int col) {
 		return this.knight.getPosition().equals(new Pair<>(row, col));
 	}
 
 	@Override
-	public boolean hasPawn(int row, int col) {
+	public boolean hasPawn(final int row, final int col) {
 		return this.pawn.getPosition().equals(new Pair<>(row,col));
 	}
 }
