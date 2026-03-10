@@ -1,5 +1,8 @@
 package it.unibo.pps.e2;
 
+/**
+ * A Chess Piece that can move on a board of arbitrary size.
+ */
 public interface ChessPiece {
 
     /**

@@ -8,7 +8,7 @@ public class LogicsImpl implements Logics {
 	private final ChessPiece knight;
 	private final Random random = new Random();
 	private final int size;
-	private final PieceBehaviour noMovementBehaviour = (boardSize, initial, destination) -> false;
+	private final PieceBehaviour noMovementBehaviour = (initial, destination) -> false;
 
     public LogicsImpl(final int size){
     	this.size = size;

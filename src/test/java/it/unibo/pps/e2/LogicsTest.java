@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class LogicTest {
+public class LogicsTest {
 
     public static final int SIZE = 5;
     public static final int KNIGHT_X = 2;

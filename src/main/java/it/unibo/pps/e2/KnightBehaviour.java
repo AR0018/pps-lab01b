@@ -5,7 +5,6 @@ public class KnightBehaviour implements PieceBehaviour {
 
     @Override
     public boolean canMove(
-            final int boardSize,
             final Pair<Integer, Integer> initialPosition,
             final Pair<Integer, Integer> destinationPosition) {
         int xMovement = destinationPosition.getX() - initialPosition.getX();

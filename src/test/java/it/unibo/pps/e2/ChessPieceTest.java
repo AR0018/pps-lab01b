@@ -17,7 +17,7 @@ public class ChessPieceTest {
 
     @BeforeEach
     void init() {
-        this.behaviour = (BOARD_SIZE, initial, destination) -> true;
+        this.behaviour = (initial, destination) -> true;
         this.chessPiece = new ChessPieceImpl(
                 BOARD_SIZE,
                 new Pair<>(INITIAL_ROW, INITIAL_COL),

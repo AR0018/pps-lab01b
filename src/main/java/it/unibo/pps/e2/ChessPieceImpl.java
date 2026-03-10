@@ -24,7 +24,7 @@ public class ChessPieceImpl implements ChessPiece {
         if(isOutOfBounds(this.boardSize, position)) {
             throw new IndexOutOfBoundsException("Desired move is out of bounds.");
         }
-        this.position = this.behaviour.canMove(this.boardSize, this.position, position) ?
+        this.position = this.behaviour.canMove(this.position, position) ?
                 position : this.position;
     }
 
